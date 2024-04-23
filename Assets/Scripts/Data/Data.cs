@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Data : MonoBehaviour
@@ -161,6 +160,18 @@ public class Data : MonoBehaviour
         }
     }
 
+    public bool IsPurchasedCharacter(int index)
+    {
+        if (_purchasedCharacter[index])
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public void BuyMap(int index, int price)
     {
         if (!IsPurchasedMap(index))
@@ -195,5 +206,101 @@ public class Data : MonoBehaviour
                 Save();
             }
         }
+    }
+
+    public void SelectCharacter(int index)
+    {
+        if (IsPurchasedCharacter(index))
+        {
+            for (int i = 0; i < _selectedCharacter.Length; i++)
+            {
+                if (i == index)
+                {
+                    _selectedCharacter[i] = true;
+                }
+                else
+                {
+                    _selectedCharacter[i] = false;
+                }
+            }
+        }
+    }
+
+    public int GetJetpackIndex()
+    {
+        for (int i = 0; i < _selectedJetpack.Length; i++)
+        {
+            if (_selectedJetpack[i])
+            {
+                return i;
+                break;
+            }
+        }
+
+        return 0;
+    }
+    
+    public void SelectJetpack(int index)
+    {
+        if (IsPurchasedJetpack(index))
+        {
+            for (int i = 0; i < _selectedJetpack.Length; i++)
+            {
+                if (i == index)
+                {
+                    _selectedJetpack[i] = true;
+                }
+                else
+                {
+                    _selectedJetpack[i] = false;
+                }
+            }
+        }
+    }
+
+    public int GetCharacterIndex()
+    {
+        for (int i = 0; i < _selectedCharacter.Length; i++)
+        {
+            if (_selectedCharacter[i])
+            {
+                return i;
+                break;
+            }
+        }
+
+        return 0;
+    }
+    
+    public void SelectShoes(int index)
+    {
+        if (IsPurchasedShoes(index))
+        {
+            for (int i = 0; i < _selectedShoes.Length; i++)
+            {
+                if (i == index)
+                {
+                    _selectedShoes[i] = true;
+                }
+                else
+                {
+                    _selectedShoes[i] = false;
+                }
+            }
+        }
+    }
+
+    public int GetShoesIndex()
+    {
+        for (int i = 0; i < _selectedShoes.Length; i++)
+        {
+            if (_selectedShoes[i])
+            {
+                return i;
+                break;
+            }
+        }
+
+        return 0;
     }
 }

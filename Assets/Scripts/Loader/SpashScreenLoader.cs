@@ -5,22 +5,23 @@ using UnityEngine.UI;
 
 public class SpashScreenLoader : MonoBehaviour
 {
+    private float timeDownload = 2f;
+    private float timeLeft;
+    
     [SerializeField] 
     private Slider loaderSlider;
     
-    IEnumerator Start()
+    private void Update()
     {
-        loaderSlider.SetValueWithoutNotify(0);
-
-        yield return new WaitForSeconds(1f);
-        
-        loaderSlider.SetValueWithoutNotify(.5f);
-
-        yield return new WaitForSeconds(1f);
-
-        loaderSlider.SetValueWithoutNotify(1f);
-
-        SceneManager.LoadScene(Loader.Scene.MainMenuScene.ToString());
+        if (timeLeft < timeDownload)
+        {
+            timeLeft += Time.deltaTime;
+            loaderSlider.value = timeLeft;
+        }
+        else
+        {
+            SceneManager.LoadScene(Loader.Scene.MainMenuScene.ToString());
+        }
     }
 
 }

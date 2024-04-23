@@ -5,7 +5,7 @@ public class ControlManager : MonoBehaviour
     private const string PLAYER_PREFS_CONTROL = "Control";
     private const string PLAYER_PREFS_EXPERT = "Expert";
     private const string PLAYER_PREFS_CLASSIC = "Classic";
-    
+
     public static ControlManager Instance;
 
     private void Awake()

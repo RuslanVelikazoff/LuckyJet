@@ -16,6 +16,8 @@ public class MainPanel : MonoBehaviour, IPanelFunction
     private GameObject morePanel;
     [SerializeField] 
     private GameObject settingsPanel;
+    [SerializeField] 
+    private GameObject gamemodePanel;
 
     private IPanelFunction panelFunction;
     
@@ -33,7 +35,7 @@ public class MainPanel : MonoBehaviour, IPanelFunction
             startButton.onClick.RemoveAllListeners();
             startButton.onClick.AddListener(() =>
             {
-                Debug.Log("Start Button");
+                panelFunction.OpenPanel(gamemodePanel, this.gameObject);
             });
         }
         

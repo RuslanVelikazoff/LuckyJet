@@ -4,9 +4,10 @@ public static class Loader
 {
     public enum Scene
     {
-        SplashScreenScene,
         MainMenuScene,
-        GameScene,
+        PinkSunset,
+        UnknownPlanet,
+        ColdValley,
         LoadingScene
     }
 
