@@ -1,8 +1,8 @@
+using System;
 using UnityEngine;
 
 public class Data : MonoBehaviour
 {
-    //Добавить методы для выбора джойстика и заднего фона
     public static Data Instance;
 
     private void Awake()
@@ -24,10 +24,12 @@ public class Data : MonoBehaviour
     public bool[] _selectedCharacter;
     public bool[] _selectedJetpack;
     public bool[] _selectedShoes;
+    public bool[] _selectedMap;
 
     public bool[] _purchasedCharacter;
     public bool[] _purchasedJetpack;
     public bool[] _purchasedShoes;
+    public bool[] _purchasedMap;
 
     public int _coin;
 
@@ -63,10 +65,12 @@ public class Data : MonoBehaviour
         _selectedCharacter = data.selectedCharacter;
         _selectedJetpack = data.selectedJetpack;
         _selectedShoes = data.selectedShoes;
+        _selectedMap = data.selectedMap;
 
         _purchasedCharacter = data.purchasedCharacter;
         _purchasedJetpack = data.purchasedJetpack;
         _purchasedShoes = data.purchasedShoes;
+        _purchasedMap = data.purchasedMap;
 
         _coin = data.coin;
         _highScore = data.highScore;
@@ -89,15 +93,107 @@ public class Data : MonoBehaviour
             selectedCharacter = _selectedCharacter,
             selectedJetpack = _selectedJetpack,
             selectedShoes = _selectedShoes,
+            selectedMap = _selectedMap,
             
             purchasedCharacter = _purchasedCharacter,
             purchasedJetpack = _purchasedJetpack,
             purchasedShoes = _purchasedShoes,
+            purchasedMap = _purchasedMap,
             
             coin = _coin,
             highScore = _highScore
         };
 
         return data;
+    }
+
+    public int GetCoinAmount()
+    {
+        return _coin;
+    }
+
+    public bool BuyItem(int price)
+    {
+        if (_coin >= price)
+        {
+            _coin = _coin - price;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool IsPurchasedMap(int index)
+    {
+        if (_purchasedMap[index])
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool IsPurchasedJetpack(int index)
+    {
+        if (_purchasedJetpack[index])
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool IsPurchasedShoes(int index)
+    {
+        if (_purchasedShoes[index])
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void BuyMap(int index, int price)
+    {
+        if (!IsPurchasedMap(index))
+        {
+            if (BuyItem(price))
+            {
+                _purchasedMap[index] = true;
+                Save();
+            }
+        }
+    }
+
+    public void BuyJetpack(int index, int price)
+    {
+        if (!IsPurchasedJetpack(index))
+        {
+            if (BuyItem(price))
+            {
+                _purchasedJetpack[index] = true;
+                Save();
+            }
+        }
+    }
+
+    public void BuyShoes(int index, int price)
+    {
+        if (!IsPurchasedShoes(index))
+        {
+            if (BuyItem(price))
+            {
+                _purchasedShoes[index] = true;
+                Save();
+            }
+        }
     }
 }

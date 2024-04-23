@@ -37,7 +37,7 @@ public class MorePanel : MonoBehaviour, IPanelFunction
             shopButton.onClick.RemoveAllListeners();
             shopButton.onClick.AddListener(() =>
             {
-                Debug.Log("Shop button");
+                panelFunction.OpenPanel(shopPanel, this.gameObject);
             });
         }
         
@@ -55,7 +55,7 @@ public class MorePanel : MonoBehaviour, IPanelFunction
             helpButton.onClick.RemoveAllListeners();
             helpButton.onClick.AddListener(() =>
             {
-                Debug.Log("Help button");
+                panelFunction.OpenPanel(helpPanel, this.gameObject);
             });
         }
         
