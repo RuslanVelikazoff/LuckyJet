@@ -303,4 +303,36 @@ public class Data : MonoBehaviour
 
         return 0;
     }
+
+    public int GetSelectedMapIndex()
+    {
+        for (int i = 0; i < _selectedMap.Length; i++)
+        {
+            if (_selectedMap[i])
+            {
+                return i;
+                break;
+            }
+        }
+
+        return 0;
+    }
+    
+    public void SelectMap(int index)
+    {
+        if (IsPurchasedMap(index))
+        {
+            for (int i = 0; i < _selectedMap.Length; i++)
+            {
+                if (i == index)
+                {
+                    _selectedMap[i] = true;
+                }
+                else
+                {
+                    _selectedMap[i] = false;
+                }
+            }
+        }
+    }
 }

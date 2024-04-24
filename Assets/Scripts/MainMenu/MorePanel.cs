@@ -46,7 +46,7 @@ public class MorePanel : MonoBehaviour, IPanelFunction
             recordsButton.onClick.RemoveAllListeners();
             recordsButton.onClick.AddListener(() =>
             {
-                Debug.Log("Record button");
+                panelFunction.OpenPanel(recordsPanel, this.gameObject);
             });
         }
         

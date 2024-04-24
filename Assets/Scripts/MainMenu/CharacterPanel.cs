@@ -72,7 +72,7 @@ public class CharacterPanel : MonoBehaviour, IPanelFunction
             nextCharacterButton.onClick.RemoveAllListeners();
             nextCharacterButton.onClick.AddListener(() =>
             {
-                nextCharacter();
+                NextCharacter();
             });
         }
 
@@ -81,7 +81,7 @@ public class CharacterPanel : MonoBehaviour, IPanelFunction
             previousCharacterButton.onClick.RemoveAllListeners();
             previousCharacterButton.onClick.AddListener(() =>
             {
-                previousCharacter();
+                PreviousCharacter();
             });
         }
 
@@ -90,7 +90,7 @@ public class CharacterPanel : MonoBehaviour, IPanelFunction
             nextJetpackButton.onClick.RemoveAllListeners();
             nextJetpackButton.onClick.AddListener(() =>
             {
-                nextJetpack();
+                NextJetpack();
             });
         }
 
@@ -99,7 +99,7 @@ public class CharacterPanel : MonoBehaviour, IPanelFunction
             previousJetpackButton.onClick.RemoveAllListeners();
             previousJetpackButton.onClick.AddListener(() =>
             {
-                previousJetpack();
+                PreviousJetpack();
             });
         }
 
@@ -108,7 +108,7 @@ public class CharacterPanel : MonoBehaviour, IPanelFunction
             nextShoesButton.onClick.RemoveAllListeners();
             nextShoesButton.onClick.AddListener(() =>
             {
-                nextShoes();
+                NextShoes();
             });
         }
 
@@ -117,7 +117,7 @@ public class CharacterPanel : MonoBehaviour, IPanelFunction
             previousShoesButton.onClick.RemoveAllListeners();
             previousShoesButton.onClick.AddListener(() =>
             {
-                previousShoes();
+                PreviousShoes();
             });
         }
     }
@@ -137,7 +137,7 @@ public class CharacterPanel : MonoBehaviour, IPanelFunction
         }
     }
 
-    private void nextCharacter()
+    private void NextCharacter()
     {
         int previousCharacterIndex = currentCharacterIndex;
         
@@ -165,7 +165,7 @@ public class CharacterPanel : MonoBehaviour, IPanelFunction
         }
     }
     
-    private void previousCharacter()
+    private void PreviousCharacter()
     {
         int previousCharacterIndex = currentCharacterIndex;
         
@@ -208,7 +208,7 @@ public class CharacterPanel : MonoBehaviour, IPanelFunction
         }
     }
 
-    private void nextJetpack()
+    private void NextJetpack()
     {
         int previousJetpackIndex = currentJetpackIndex;
         
@@ -236,7 +236,7 @@ public class CharacterPanel : MonoBehaviour, IPanelFunction
         }
     }
     
-    private void previousJetpack()
+    private void PreviousJetpack()
     {
         int previousJetpackIndex = currentJetpackIndex;
         
@@ -279,7 +279,7 @@ public class CharacterPanel : MonoBehaviour, IPanelFunction
         }
     }
 
-    private void nextShoes()
+    private void NextShoes()
     {
         int previousShoesIndex = currentShoesIndex;
         
@@ -307,7 +307,7 @@ public class CharacterPanel : MonoBehaviour, IPanelFunction
         }
     }
     
-    private void previousShoes()
+    private void PreviousShoes()
     {
         int previousShoesIndex = currentShoesIndex;
         
