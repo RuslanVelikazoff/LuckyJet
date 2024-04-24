@@ -1,22 +1,71 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] 
-    private Rigidbody rigidbody;
+    private Joystick joystickClassic;
+
+    [SerializeField] 
+    private Rigidbody2D rigidbody;
+
+    private float speed = 10;
+
+    private Vector2 moveVector;
+
+    private bool isMove = false;
+
+    private void Start()
+    {
+        ControlManager.Instance.SetControlExpert(); 
+    }
 
     private void FixedUpdate()
     {
-        if (Input.GetMouseButton(0))
+        if (ControlManager.Instance.IsClassicControl())
         {
-            rigidbody.AddForce(new Vector3(0, 50, 0), ForceMode.Acceleration);
+            if (joystickClassic.Horizontal != 0 || joystickClassic.Vertical != 0)
+            {
+                moveVector = new Vector2(joystickClassic.Horizontal * speed, joystickClassic.Vertical * speed);
+                rigidbody.velocity = moveVector;
+            }
         }
-        else if (Input.GetMouseButtonUp(0))
+
+        if (ControlManager.Instance.IsExpertControl())
         {
-            rigidbody.velocity *= .25f;
+            if (isMove)
+            {
+                rigidbody.velocity = moveVector;
+            }
         }
     }
+
+    public void Reset()
+    {
+        isMove = false;
+    }
+
+    public void MovePlayerUp()
+    {
+        isMove = true;
+        moveVector = new Vector2(rigidbody.velocity.x, speed);
+    }
+
+    public void MovePlayerDown()
+    {
+        isMove = true;
+        moveVector = new Vector2(rigidbody.velocity.x, -speed);
+    }
+
+    public void MovePlayerLeft()
+    {
+        isMove = true;
+        moveVector = new Vector2(-speed, rigidbody.velocity.y);
+    }
+
+    public void MovePlayerRight()
+    {
+        isMove = true;
+        moveVector = new Vector2(speed, rigidbody.velocity.y);
+    }
+
 }

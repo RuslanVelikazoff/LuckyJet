@@ -48,4 +48,16 @@ public class ControlManager : MonoBehaviour
             return false;
         }
     }
+
+    public bool IsExpertControl()
+    {
+        if (PlayerPrefs.GetString(PLAYER_PREFS_CONTROL) == PLAYER_PREFS_EXPERT)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

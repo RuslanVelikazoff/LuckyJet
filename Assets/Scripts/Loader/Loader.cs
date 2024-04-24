@@ -24,4 +24,9 @@ public static class Loader
     {
         SceneManager.LoadScene(targetScene.ToString());
     }
+
+    public static Scene CurrentScene()
+    {
+        return Loader.targetScene;
+    }
 }
