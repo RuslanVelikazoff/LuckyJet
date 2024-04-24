@@ -3,12 +3,18 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] 
+    private DistanceBar distanceBar;
+    
+    [SerializeField] 
     private Joystick joystickClassic;
 
     [SerializeField] 
     private Rigidbody2D rigidbody;
 
     private float speed = 10;
+    private float currentDistance = 0f;
+    private float walkingDistance = .3f;
+    private float maxDistance = 2000f;
 
     private Vector2 moveVector;
 
@@ -17,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         ControlManager.Instance.SetControlExpert(); 
+        distanceBar.SetSliderInStart(currentDistance, maxDistance);
     }
 
     private void FixedUpdate()
@@ -36,6 +43,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 rigidbody.velocity = moveVector;
             }
+        }
+        
+        currentDistance += walkingDistance;
+        distanceBar.SetWalkingDistance(walkingDistance);
+
+        if (currentDistance >= maxDistance)
+        {
+            GameManager.Instance.WinGame();
         }
     }
 

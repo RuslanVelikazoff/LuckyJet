@@ -10,6 +10,11 @@ public class LoaderCallback : MonoBehaviour
     private float timeDownload = 2f;
     private float timeLeft;
 
+    private void Awake()
+    {
+        Time.timeScale = 1;
+    }
+
     private void Update()
     {
         if (timeLeft < timeDownload)

@@ -111,6 +111,11 @@ public class Data : MonoBehaviour
         return _coin;
     }
 
+    public void AddCoin(int amount)
+    {
+        _coin += amount;
+    }
+
     public bool BuyItem(int price)
     {
         if (_coin >= price)
