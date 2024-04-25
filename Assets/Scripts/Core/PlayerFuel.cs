@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerFuel : MonoBehaviour
@@ -9,9 +10,11 @@ public class PlayerFuel : MonoBehaviour
     [SerializeField]
     private FuelBar fuelBar;
 
-    private void Awake()
+    private IEnumerator Start()
     {
-        fuelBar.SetFuelSlider(maxFuel, currentFuel);
+        Debug.Log(currentFuel);
+        yield return new WaitForSeconds(.2f);
+        Debug.Log(currentFuel);
     }
 
     private void Update()
@@ -23,5 +26,11 @@ public class PlayerFuel : MonoBehaviour
         {
             GameManager.Instance.LoseGame();
         }
+    }
+
+    public void SetPlayerFuel(float currentFuel)
+    {
+        this.currentFuel = currentFuel;
+        fuelBar.SetFuelSlider(maxFuel, this.currentFuel);
     }
 }

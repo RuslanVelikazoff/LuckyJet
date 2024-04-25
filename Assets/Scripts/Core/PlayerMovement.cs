@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -20,10 +22,11 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isMove = false;
 
-    private void Start()
+    private IEnumerator Start()
     {
-        ControlManager.Instance.SetControlExpert(); 
-        distanceBar.SetSliderInStart(currentDistance, maxDistance);
+        Debug.Log(speed);
+        yield return new WaitForSeconds(.2f);
+        Debug.Log(speed);
     }
 
     private void FixedUpdate()
@@ -81,6 +84,14 @@ public class PlayerMovement : MonoBehaviour
     {
         isMove = true;
         moveVector = new Vector2(speed, rigidbody.velocity.y);
+    }
+
+    public void SetPlayerMovement(float currentSpeed, float currentWalkingDistance)
+    {
+        speed = currentSpeed;
+        walkingDistance = currentWalkingDistance;
+        
+        distanceBar.SetSliderInStart(currentDistance, maxDistance);
     }
 
 }
