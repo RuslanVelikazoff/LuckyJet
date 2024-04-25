@@ -9,13 +9,33 @@ public class SetPlayerStatsManager : MonoBehaviour
     private PlayerFuel playerFuel;
     [SerializeField] 
     private PlayerMovement playerMovement;
+
+    private float maxDistance;
     
     private IEnumerator Start()
     {
         yield return new WaitForSeconds(.1f);
         
+        SetMaxDistance();
         SetPlayerFuel();
         SetPlayerMovement();
+    }
+
+    private void SetMaxDistance()
+    {
+        switch (Data.Instance.GetSelectedMapIndex())
+        {
+            default:
+            case 0:
+                maxDistance = 2000f;
+                break;
+            case 1:
+                maxDistance = 3000f;
+                break;
+            case 2:
+                maxDistance = 4000f;
+                break;
+        }
     }
 
     private void SetPlayerFuel()
@@ -46,17 +66,17 @@ public class SetPlayerStatsManager : MonoBehaviour
             case 0:
                 float playerSpeed1 = 3f;
                 float playerWalkingDistance1 = .1f;
-                playerMovement.SetPlayerMovement(playerSpeed1, playerWalkingDistance1);
+                playerMovement.SetPlayerMovement(playerSpeed1, playerWalkingDistance1, maxDistance);
                 break;
             case 1:
                 float playerSpeed2 = 6f;
                 float playerWalkingDistance2 = .2f;
-                playerMovement.SetPlayerMovement(playerSpeed2, playerWalkingDistance2);
+                playerMovement.SetPlayerMovement(playerSpeed2, playerWalkingDistance2, maxDistance);
                 break;
             case 2:
                 float playerSpeed3 = 9f;
                 float playerWalkingDistance3 = .3f;
-                playerMovement.SetPlayerMovement(playerSpeed3, playerWalkingDistance3);
+                playerMovement.SetPlayerMovement(playerSpeed3, playerWalkingDistance3, maxDistance);
                 break;
         }
     }

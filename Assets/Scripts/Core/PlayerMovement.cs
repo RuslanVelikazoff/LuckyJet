@@ -22,13 +22,6 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isMove = false;
 
-    private IEnumerator Start()
-    {
-        Debug.Log(speed);
-        yield return new WaitForSeconds(.2f);
-        Debug.Log(speed);
-    }
-
     private void FixedUpdate()
     {
         if (ControlManager.Instance.IsClassicControl())
@@ -86,10 +79,11 @@ public class PlayerMovement : MonoBehaviour
         moveVector = new Vector2(speed, rigidbody.velocity.y);
     }
 
-    public void SetPlayerMovement(float currentSpeed, float currentWalkingDistance)
+    public void SetPlayerMovement(float currentSpeed, float currentWalkingDistance, float currentMaxDistance)
     {
         speed = currentSpeed;
         walkingDistance = currentWalkingDistance;
+        maxDistance = currentMaxDistance;
         
         distanceBar.SetSliderInStart(currentDistance, maxDistance);
     }

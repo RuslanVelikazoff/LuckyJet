@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DistanceBar : MonoBehaviour
+public class OpponentDistanceBar : MonoBehaviour
 {
     [SerializeField] private Slider distanceSlider;
 

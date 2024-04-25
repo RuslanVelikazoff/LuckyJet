@@ -21,6 +21,7 @@ public class GamemodeManager : MonoBehaviour
             return;
         }
         DontDestroyOnLoad(gameObject);
+        Debug.Log(PlayerPrefs.GetString(PLAYER_PREFS_SELECTED_GAMEMODE));
     }
 
     public void SelectCompetitiveGamemode()
@@ -30,7 +31,7 @@ public class GamemodeManager : MonoBehaviour
 
     public void SelectedSingleGamemode()
     {
-        PlayerPrefs.SetString(PLAYER_PREFS_SELECTED_GAMEMODE, PLAYER_PREFS_COMPETITIVE);
+        PlayerPrefs.SetString(PLAYER_PREFS_SELECTED_GAMEMODE, PLAYER_PREFS_SINGLE);
     }
 
     public void SelectedLimitedTimeGamemode()

@@ -10,13 +10,6 @@ public class PlayerFuel : MonoBehaviour
     [SerializeField]
     private FuelBar fuelBar;
 
-    private IEnumerator Start()
-    {
-        Debug.Log(currentFuel);
-        yield return new WaitForSeconds(.2f);
-        Debug.Log(currentFuel);
-    }
-
     private void Update()
     {
         currentFuel -= Time.deltaTime;
@@ -32,5 +25,12 @@ public class PlayerFuel : MonoBehaviour
     {
         this.currentFuel = currentFuel;
         fuelBar.SetFuelSlider(maxFuel, this.currentFuel);
+    }
+
+    public void AddFuel()
+    {
+        float addedFuel = 4f;
+        currentFuel += addedFuel;
+        fuelBar.SetFuelSlider(maxFuel, currentFuel);
     }
 }
