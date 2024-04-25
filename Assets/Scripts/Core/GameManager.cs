@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         Data.Instance.AddCoin(coinBar.CollectedCoins());
         gameOverPanel.OpenPanel(coinBar.CollectedCoins());
+        Data.Instance.NewRecord(coinBar.CollectedCoins());
     }
 
     public void WinGame()
@@ -30,5 +31,6 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         Data.Instance.AddCoin(coinBar.CollectedCoins());
         gameWinPanel.OpenPanel(coinBar.CollectedCoins());
+        Data.Instance.NewRecord(coinBar.CollectedCoins());
     }
 }

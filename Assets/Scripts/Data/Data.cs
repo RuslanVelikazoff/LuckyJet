@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Data : MonoBehaviour
@@ -32,7 +34,7 @@ public class Data : MonoBehaviour
 
     public int _coin;
 
-    public int _highScore;
+    public int[] _highScores;
 
     private void Start()
     {
@@ -72,7 +74,7 @@ public class Data : MonoBehaviour
         _purchasedMap = data.purchasedMap;
 
         _coin = data.coin;
-        _highScore = data.highScore;
+        _highScores = data.highScores;
         
         Debug.Log("Loading data");
     }
@@ -100,7 +102,7 @@ public class Data : MonoBehaviour
             purchasedMap = _purchasedMap,
             
             coin = _coin,
-            highScore = _highScore
+            highScores = _highScores
         };
 
         return data;
@@ -338,6 +340,40 @@ public class Data : MonoBehaviour
                     _selectedMap[i] = false;
                 }
             }
+        }
+    }
+
+    public int GetHighScoreByIndex(int index)
+    {
+        for (int i = 0; i < _highScores.Length; i++)
+        {
+            if (i == index)
+            {
+                return _highScores[i];
+                break;
+            }
+        }
+
+        return 0;
+    }
+
+    public void ClearRecords()
+    {
+        for (int i = 0; i < _highScores.Length; i++)
+        {
+            _highScores[i] = 0;
+        }
+    }
+
+    public void NewRecord(int score)
+    {
+        _highScores[_highScores.Length - 1] = score;
+        
+        Array.Sort(_highScores);
+
+        if (_highScores[0] < _highScores[_highScores.Length - 1])
+        {
+            Array.Reverse(_highScores);
         }
     }
 }

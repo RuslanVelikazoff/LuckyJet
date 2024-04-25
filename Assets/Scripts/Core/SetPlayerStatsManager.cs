@@ -9,8 +9,12 @@ public class SetPlayerStatsManager : MonoBehaviour
     private PlayerFuel playerFuel;
     [SerializeField] 
     private PlayerMovement playerMovement;
+    [SerializeField] 
+    private TemplateSpawner templateSpawner;
 
     private float maxDistance;
+    private float playerSpeed;
+    private float templateSpeed;
     
     private IEnumerator Start()
     {
@@ -19,6 +23,27 @@ public class SetPlayerStatsManager : MonoBehaviour
         SetMaxDistance();
         SetPlayerFuel();
         SetPlayerMovement();
+        SetTemplateSpeed();
+    }
+
+    private void SetTemplateSpeed()
+    {
+        switch (Data.Instance.GetCharacterIndex())
+        {
+            default:
+            case 0:
+                templateSpeed = 3;
+                templateSpawner.SetTemplateSpeed(templateSpeed);
+                break;
+            case 1:
+                templateSpeed = 6;
+                templateSpawner.SetTemplateSpeed(templateSpeed);
+                break;
+            case 2:
+                templateSpeed = 9;
+                templateSpawner.SetTemplateSpeed(templateSpeed);
+                break;
+        }
     }
 
     private void SetMaxDistance()
@@ -64,19 +89,19 @@ public class SetPlayerStatsManager : MonoBehaviour
         {
             default:
             case 0:
-                float playerSpeed1 = 3f;
+                playerSpeed = 3f;
                 float playerWalkingDistance1 = .1f;
-                playerMovement.SetPlayerMovement(playerSpeed1, playerWalkingDistance1, maxDistance);
+                playerMovement.SetPlayerMovement(playerSpeed, playerWalkingDistance1, maxDistance);
                 break;
             case 1:
-                float playerSpeed2 = 6f;
+                playerSpeed = 6f;
                 float playerWalkingDistance2 = .2f;
-                playerMovement.SetPlayerMovement(playerSpeed2, playerWalkingDistance2, maxDistance);
+                playerMovement.SetPlayerMovement(playerSpeed, playerWalkingDistance2, maxDistance);
                 break;
             case 2:
-                float playerSpeed3 = 9f;
+                playerSpeed = 9f;
                 float playerWalkingDistance3 = .3f;
-                playerMovement.SetPlayerMovement(playerSpeed3, playerWalkingDistance3, maxDistance);
+                playerMovement.SetPlayerMovement(playerSpeed, playerWalkingDistance3, maxDistance);
                 break;
         }
     }

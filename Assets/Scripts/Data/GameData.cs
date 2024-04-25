@@ -13,7 +13,7 @@ public class GameData
 
     public int coin;
 
-    public int highScore;
+    public int[] highScores = new int[6];
 
     public GameData()
     {
@@ -51,8 +51,15 @@ public class GameData
         purchasedMap[1] = false;
         purchasedMap[2] = false;
         
+        //Records
+        highScores[0] = 0;
+        highScores[1] = 0;
+        highScores[2] = 0;
+        highScores[3] = 0;
+        highScores[4] = 0;
+        highScores[5] = 0;
+        
         //Coin and score at the first launch
         coin = 0;
-        highScore = 0;
     }
 }

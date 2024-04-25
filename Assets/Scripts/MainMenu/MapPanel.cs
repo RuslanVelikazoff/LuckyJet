@@ -121,6 +121,10 @@ public class MapPanel : MonoBehaviour, IPanelFunction
                 maps[previousMapIndex].SetActive(false);
                 Data.Instance.SelectMap(currentMapIndex);
             }
+            else
+            {
+                currentMapIndex = previousMapIndex;
+            }
         }
         else
         {
@@ -131,6 +135,10 @@ public class MapPanel : MonoBehaviour, IPanelFunction
                 maps[currentMapIndex].SetActive(true);
                 maps[previousMapIndex].SetActive(false);
                 Data.Instance.SelectMap(currentMapIndex);
+            }
+            else
+            {
+                currentMapIndex = previousMapIndex;
             }
         }
         
@@ -151,6 +159,10 @@ public class MapPanel : MonoBehaviour, IPanelFunction
                 maps[previousMapIndex].SetActive(false);
                 Data.Instance.SelectMap(currentMapIndex);
             }
+            else
+            {
+                currentMapIndex = previousMapIndex;
+            }
         }
         else
         {
@@ -161,6 +173,10 @@ public class MapPanel : MonoBehaviour, IPanelFunction
                 maps[currentMapIndex].SetActive(true);
                 maps[previousMapIndex].SetActive(false);
                 Data.Instance.SelectMap(currentMapIndex);
+            }
+            else
+            {
+                currentMapIndex = previousMapIndex;
             }
         }
         
