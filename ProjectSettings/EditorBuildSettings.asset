@@ -19,8 +19,8 @@ EditorBuildSettings:
     guid: a8a445ce71f220340a8079563635f495
   - enabled: 1
     path: Assets/Scenes/UnknownPlanet.unity
-    guid: 1f49de89e7d4e174085cf6ce6c1164f4
+    guid: de742294c5cb1ec448ced6585e6f55a0
   - enabled: 1
     path: Assets/Scenes/ColdValley.unity
-    guid: 91eceecdf28b4f942874d93705e33a60
+    guid: 1edb7df1180cc304e87f0bd4fd5e3f6b
   m_configObjects: {}
