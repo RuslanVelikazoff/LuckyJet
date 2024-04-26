@@ -14,8 +14,12 @@ public class SetPlayerStatsManager : MonoBehaviour
 
     private float maxDistance;
     private float playerSpeed;
+    private float playerWalkingDistance;
     private float templateSpeed;
-    
+
+    private float playerBoostSpeed;
+    private float playerBoostWalkingDistance;
+
     private IEnumerator Start()
     {
         yield return new WaitForSeconds(.1f);
@@ -23,6 +27,7 @@ public class SetPlayerStatsManager : MonoBehaviour
         SetMaxDistance();
         SetPlayerFuel();
         SetPlayerMovement();
+        SetPlayerBoostMovement();
         SetTemplateSpeed();
     }
 
@@ -90,18 +95,41 @@ public class SetPlayerStatsManager : MonoBehaviour
             default:
             case 0:
                 playerSpeed = 3f;
-                float playerWalkingDistance1 = .1f;
-                playerMovement.SetPlayerMovement(playerSpeed, playerWalkingDistance1, maxDistance);
+                playerWalkingDistance = .1f;
+                playerMovement.SetPlayerMovement(playerSpeed, playerWalkingDistance, maxDistance);
                 break;
             case 1:
                 playerSpeed = 6f;
-                float playerWalkingDistance2 = .2f;
-                playerMovement.SetPlayerMovement(playerSpeed, playerWalkingDistance2, maxDistance);
+                playerWalkingDistance = .2f;
+                playerMovement.SetPlayerMovement(playerSpeed, playerWalkingDistance, maxDistance);
                 break;
             case 2:
                 playerSpeed = 9f;
-                float playerWalkingDistance3 = .3f;
-                playerMovement.SetPlayerMovement(playerSpeed, playerWalkingDistance3, maxDistance);
+                playerWalkingDistance = .3f;
+                playerMovement.SetPlayerMovement(playerSpeed, playerWalkingDistance, maxDistance);
+                break;
+        }
+    }
+
+    private void SetPlayerBoostMovement()
+    {
+        switch (Data.Instance.GetShoesIndex())
+        {
+            default:
+            case 0:
+                playerBoostSpeed = playerSpeed + .3f;
+                playerBoostWalkingDistance = playerWalkingDistance + .04f;
+                playerMovement.SetPlayerBoostMovement(playerBoostSpeed, playerWalkingDistance);
+                break;
+            case 1:
+                playerBoostSpeed = playerSpeed + .6f;
+                playerBoostWalkingDistance = playerWalkingDistance + .08f;
+                playerMovement.SetPlayerBoostMovement(playerBoostSpeed, playerWalkingDistance);
+                break;
+            case 2:
+                playerBoostSpeed = playerSpeed + 1;
+                playerBoostWalkingDistance = playerWalkingDistance + .12f;
+                playerMovement.SetPlayerBoostMovement(playerBoostSpeed, playerWalkingDistance);
                 break;
         }
     }

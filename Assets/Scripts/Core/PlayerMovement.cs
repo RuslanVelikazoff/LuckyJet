@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -18,9 +16,13 @@ public class PlayerMovement : MonoBehaviour
     private float walkingDistance = .3f;
     private float maxDistance = 2000f;
 
+    private float boostSpeed;
+    private float boostWalkingDistance;
+
     private Vector2 moveVector;
 
     private bool isMove = false;
+    private bool boost = false;
 
     private void FixedUpdate()
     {
@@ -28,8 +30,22 @@ public class PlayerMovement : MonoBehaviour
         {
             if (joystickClassic.Horizontal != 0 || joystickClassic.Vertical != 0)
             {
-                moveVector = new Vector2(joystickClassic.Horizontal * speed, joystickClassic.Vertical * speed);
-                rigidbody.velocity = moveVector;
+                if (boost)
+                {
+                    moveVector = new Vector2(joystickClassic.Horizontal * boostSpeed, joystickClassic.Vertical * boostSpeed);
+                    rigidbody.velocity = moveVector;
+                
+                    currentDistance += boostWalkingDistance;
+                    distanceBar.SetWalkingDistance(boostWalkingDistance);
+                }
+                else
+                {
+                    moveVector = new Vector2(joystickClassic.Horizontal * speed, joystickClassic.Vertical * speed);
+                    rigidbody.velocity = moveVector;
+
+                    currentDistance += walkingDistance;
+                    distanceBar.SetWalkingDistance(walkingDistance);
+                }
             }
         }
 
@@ -38,11 +54,19 @@ public class PlayerMovement : MonoBehaviour
             if (isMove)
             {
                 rigidbody.velocity = moveVector;
+
+                if (boost)
+                {
+                    currentDistance += boostWalkingDistance;
+                    distanceBar.SetWalkingDistance(boostWalkingDistance);
+                }
+                else
+                {
+                    currentDistance += walkingDistance;
+                    distanceBar.SetWalkingDistance(walkingDistance);
+                }
             }
         }
-        
-        currentDistance += walkingDistance;
-        distanceBar.SetWalkingDistance(walkingDistance);
 
         if (currentDistance >= maxDistance)
         {
@@ -58,25 +82,53 @@ public class PlayerMovement : MonoBehaviour
     public void MovePlayerUp()
     {
         isMove = true;
-        moveVector = new Vector2(rigidbody.velocity.x, speed);
+        if (boost)
+        {
+            moveVector = new Vector2(rigidbody.velocity.x, boostSpeed);
+        }
+        else
+        {
+            moveVector = new Vector2(rigidbody.velocity.x, speed);
+        }
     }
 
     public void MovePlayerDown()
     {
         isMove = true;
-        moveVector = new Vector2(rigidbody.velocity.x, -speed);
+        if (boost)
+        {
+            moveVector = new Vector2(rigidbody.velocity.x, -boostSpeed);
+        }
+        else
+        {
+            moveVector = new Vector2(rigidbody.velocity.x, -speed);
+        }
     }
 
     public void MovePlayerLeft()
     {
         isMove = true;
-        moveVector = new Vector2(-speed, rigidbody.velocity.y);
+        if (boost)
+        {
+            moveVector = new Vector2(-boostSpeed, rigidbody.velocity.y);
+        }
+        else
+        {
+            moveVector = new Vector2(-speed, rigidbody.velocity.y);
+        }
     }
 
     public void MovePlayerRight()
     {
         isMove = true;
-        moveVector = new Vector2(speed, rigidbody.velocity.y);
+        if (boost)
+        {
+            moveVector = new Vector2(boostSpeed, rigidbody.velocity.y);
+        }
+        else
+        {
+            moveVector = new Vector2(speed, rigidbody.velocity.y);
+        }
     }
 
     public void SetPlayerMovement(float currentSpeed, float currentWalkingDistance, float currentMaxDistance)
@@ -88,4 +140,14 @@ public class PlayerMovement : MonoBehaviour
         distanceBar.SetSliderInStart(currentDistance, maxDistance);
     }
 
+    public void SetPlayerBoostMovement(float currentBoostSpeed, float currentBoostWalkingDistance)
+    {
+        boostSpeed = currentBoostSpeed;
+        boostWalkingDistance = currentBoostWalkingDistance;
+    }
+
+    public void ActivateBoost()
+    {
+        boost = !boost;
+    }
 }
