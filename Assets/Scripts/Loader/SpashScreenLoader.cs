@@ -10,17 +10,23 @@ public class SpashScreenLoader : MonoBehaviour
     
     [SerializeField] 
     private Slider loaderSlider;
+
+    public bool load = false;
     
     private void Update()
     {
-        if (timeLeft < timeDownload)
+        if (load)
         {
-            timeLeft += Time.deltaTime;
-            loaderSlider.value = timeLeft;
-        }
-        else
-        {
-            SceneManager.LoadScene(Loader.Scene.MainMenuScene.ToString());
+            if (timeLeft < timeDownload)
+            {
+                timeLeft += Time.deltaTime;
+                loaderSlider.value = timeLeft;
+            }
+            else
+            {
+                Screen.orientation = ScreenOrientation.LandscapeRight;
+                SceneManager.LoadScene(Loader.Scene.MainMenuScene.ToString());
+            }
         }
     }
 

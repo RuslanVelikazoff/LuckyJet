@@ -240,7 +240,6 @@ public class Data : MonoBehaviour
             if (_selectedJetpack[i])
             {
                 return i;
-                break;
             }
         }
 
@@ -272,7 +271,6 @@ public class Data : MonoBehaviour
             if (_selectedCharacter[i])
             {
                 return i;
-                break;
             }
         }
 
@@ -304,7 +302,6 @@ public class Data : MonoBehaviour
             if (_selectedShoes[i])
             {
                 return i;
-                break;
             }
         }
 
@@ -318,7 +315,6 @@ public class Data : MonoBehaviour
             if (_selectedMap[i])
             {
                 return i;
-                break;
             }
         }
 
@@ -350,7 +346,6 @@ public class Data : MonoBehaviour
             if (i == index)
             {
                 return _highScores[i];
-                break;
             }
         }
 
