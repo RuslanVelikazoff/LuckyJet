@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,7 +13,12 @@ public class SpashScreenLoader : MonoBehaviour
     private Slider loaderSlider;
 
     public bool load = false;
-    
+
+    private void OnEnable()
+    {
+        load = true;
+    }
+
     private void Update()
     {
         if (load)
