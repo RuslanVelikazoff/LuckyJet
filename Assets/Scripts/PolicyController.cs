@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PolicyController : MonoBehaviour
 {
+    public GameObject webViewGameObject;
     public SpashScreenLoader loader;
     public UniWebView policyWebView;
     public string policyUrl;
@@ -41,7 +42,7 @@ public class PolicyController : MonoBehaviour
         }
 
         noConnectionScreen.SetActive(false);
-        loadingScreen.SetActive(true);
+        //loadingScreen.SetActive(true);
         DisplayPolicyPage();
     }
 
@@ -77,7 +78,10 @@ public class PolicyController : MonoBehaviour
 
     public void ConfirmPolicy()
     {
+        webViewGameObject.SetActive(false);
+        backgroundForPolicy.SetActive(false);
         NavigateBasedOnPolicyCheck();
+        policyWebView.gameObject.SetActive(false);
     }
 
     private void NavigateBasedOnPolicyCheck()
