@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PolicyController : MonoBehaviour
 {
@@ -92,6 +91,7 @@ public class PolicyController : MonoBehaviour
             string policyCheck = PlayerPrefs.GetString("PolicyCheck", "");
             if (policyCheck == "Confirmed")
             {
+                loadingScreen.SetActive(true);
                 loader.load = true;
             }
             else
