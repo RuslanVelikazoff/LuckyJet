@@ -14,11 +14,6 @@ public class SpashScreenLoader : MonoBehaviour
 
     public bool load = false;
 
-    private void OnEnable()
-    {
-        load = true;
-    }
-
     private void Update()
     {
         if (load)
